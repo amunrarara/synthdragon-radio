@@ -1,0 +1,5 @@
+FROM infiniteproject/icecast
+
+ENV ICECAST_SOURCE_PASSWORD icecastpass
+ENV ICECAST_ADMIN_PASSWORD icecastpass
+ENV ICECAST_RELAY_PASSWORD icecastpass

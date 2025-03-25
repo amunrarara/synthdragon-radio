@@ -1,0 +1,21 @@
+services:
+  icecast:
+    build: ./icecast
+    container_name: icecast
+    # volumes:
+    #   - ./icecast/icecast.xml:/etc/icecast2/icecast.xml
+    ports:
+      - "8000:8000"
+
+  liquidsoap:
+    build: ./radio
+    container_name: liquidsoap
+    depends_on:
+      - icecast
+  # backend-api:
+  #   build: ./backend-api
+  #   container_name: backend-api
+  #   ports:
+  #     - "4000:4000"
+  #   depends_on:
+  #     - icecast
