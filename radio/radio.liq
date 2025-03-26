@@ -4,8 +4,6 @@ set("log.level", 4)
 
 # Load playlist (fallible)
 playlist_source = playlist(
-  mode="normal",
-  reload=3600,
   "playlist.m3u"
 )
 
