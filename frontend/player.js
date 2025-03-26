@@ -24,7 +24,7 @@ const stream = new Howl({
     html5: true,
     format: ['mp3', 'aac'],
     autoplay: true,
-    preload: true,
+    preload: true, // Only load when play is pressed
     onplay: () => {
         isPlaying = true;
         playPauseBtn.textContent = '⏸︎';
@@ -83,6 +83,8 @@ async function updateTrackInfo() {
 
         const data = await response.json();
 
+        console.log("Metadata response:", data);
+
         // Handle different Icecast response structures
         let currentTrack = '';
         if (data.icestats && data.icestats.source) {
@@ -96,9 +98,9 @@ async function updateTrackInfo() {
 
         // Simple parsing assuming 'Song Title - Artist' format
         if (currentTrack && currentTrack.includes(' - ')) {
-            const [title, artist] = currentTrack.split(' - ');
-            songTitle.textContent = title.trim();
-            songArtist.textContent = artist.trim();
+            const [artist, title] = currentTrack.split(' - ');
+            songTitle.textContent = `| SONG: ${title.trim()}`;
+            songArtist.textContent = `| ARTIST: ${artist.trim()}`;
         } else if (currentTrack) {
             songTitle.textContent = currentTrack;
             songArtist.textContent = CONFIG.fallbackArtist;
@@ -172,6 +174,8 @@ function stopMetadataUpdates() {
         clearInterval(metadataUpdateTimer);
         metadataUpdateTimer = null;
     }
+    songTitle.textContent = '';
+    songArtist.textContent = '| OFFLINE';
 }
 
 // Clean up resources when page unloads
@@ -179,3 +183,5 @@ window.addEventListener('beforeunload', () => {
     stopMetadataUpdates();
     stream.unload();
 });
+
+startMetadataUpdates();
