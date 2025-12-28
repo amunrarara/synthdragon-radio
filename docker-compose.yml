@@ -11,12 +11,12 @@ services:
     depends_on:
       - icecast
 
-  backend-api:
+  frontend:
     build:
       context: .
-      dockerfile: backend-api/Dockerfile
-    container_name: backend-api
+      dockerfile: frontend/Dockerfile
+    container_name: frontend
     ports:
-      - "4000:4000"
+      - "4000:80"
     depends_on:
       - icecast
