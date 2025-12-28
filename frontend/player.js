@@ -4,10 +4,10 @@ const songTitle = document.getElementById('song-title');
 const songArtist = document.getElementById('song-artist');
 const statusElement = document.getElementById('status-message') || document.createElement('div');
 
-// Configuration
+// Configuration - use same-origin paths (proxied through nginx to Icecast)
 const CONFIG = {
-    streamUrl: 'http://localhost:8000/stream',
-    metadataUrl: 'http://localhost:8000/status-json.xsl',
+    streamUrl: '/stream',
+    metadataUrl: '/status-json.xsl',
     updateInterval: 10000, // 10 seconds between metadata updates
     fallbackArtist: 'Synthdragon Radio'
 };
