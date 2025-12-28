@@ -96,7 +96,7 @@ async function updateTrackInfo() {
             currentTrack = source.title || '';
         }
 
-        // Simple parsing assuming 'Song Title - Artist' format
+        // Simple parsing assuming 'Artist - Song Title' format
         if (currentTrack && currentTrack.includes(' - ')) {
             const [artist, title] = currentTrack.split(' - ');
             songTitle.textContent = `| SONG: ${title.trim()}`;
