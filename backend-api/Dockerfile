@@ -2,10 +2,11 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY backend-api/package.json backend-api/package-lock.json ./
 RUN npm install --production
 
-COPY src ./src
+COPY backend-api/src ./src
+COPY frontend ./frontend
 
 EXPOSE 4000
 

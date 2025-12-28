@@ -10,10 +10,13 @@ services:
     container_name: liquidsoap
     depends_on:
       - icecast
-  # backend-api:
-  #   build: ./backend-api
-  #   container_name: backend-api
-  #   ports:
-  #     - "4000:4000"
-  #   depends_on:
-  #     - icecast
+
+  backend-api:
+    build:
+      context: .
+      dockerfile: backend-api/Dockerfile
+    container_name: backend-api
+    ports:
+      - "4000:4000"
+    depends_on:
+      - icecast
